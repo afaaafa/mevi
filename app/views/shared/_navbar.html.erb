@@ -1,0 +1,64 @@
+<div class="navbar bg-base-100/80 backdrop-blur-md border-b border-base-200 px-4 sticky top-0 z-50 mb-4">
+  <div class="navbar-start">
+    <%= link_to root_path, class: "flex items-center gap-2 group transition-all" do %>
+      <span class="font-bold text-2xl tracking-tight text-base-content group-hover:text-primary transition-colors">MEVI</span>
+    <% end %>
+  </div>
+
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal p-0 gap-2">
+      <li>
+        <%= link_to patients_path, 
+            class: "px-4 py-2 rounded-lg transition-all duration-200 #{current_page?(patients_path) ? 'bg-primary/10 text-primary font-semibold' : 'hover:bg-base-200 opacity-70 hover:opacity-100'}" do %>
+          <%= icon "user", class: "w-4 h-4" %>
+          Pacientes
+        <% end %>
+      </li>
+      
+      <li>
+        <span class="opacity-30 cursor-not-allowed px-4 py-2 grayscale" title="Em breve">
+          <%= icon "file-text", class: "w-4 h-4" %>
+          Cuidados
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="navbar-end gap-3">
+    <%# Perfil com efeito de hover melhorado %>
+    <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar online">
+        <div class="w-10 rounded-xl ring ring-primary ring-offset-base-100 ring-offset-2 hover:ring-primary-focus transition-all">
+          <div class="bg-neutral text-neutral-content flex items-center justify-center h-full">
+            <span class="text-xs font-bold"><%= Current.user&.email_address&.first&.upcase %></span>
+          </div>
+        </div>
+      </div>
+      <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-2xl z-1 mt-4 w-60 p-2 shadow-2xl border border-base-200">
+        <li class="px-4 py-3 mb-2 border-b border-base-100">
+          <span class="text-xs uppercase font-bold tracking-widest opacity-50 p-0">Sessão atual</span>
+          <div class="text-sm font-medium truncate p-0"><%= Current.user&.email_address %></div>
+        </li>
+        <li><a class="py-2 opacity-50 cursor-not-allowed">Configurações</a></li>
+        <div class="divider my-0"></div>
+        <li>
+          <%= button_to session_path, method: :delete, class: "text-error hover:bg-error/10 py-2 w-full text-left" do %>
+            <%= icon "sign-out", class: "w-4 h-4" %>
+            Sair
+          <% end %>
+        </li>
+      </ul>
+    </div>
+
+    <%# Botão Mobile com estilo de "Hambúrguer Animado" do DaisyUI %>
+    <div class="dropdown dropdown-end lg:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-square">
+        <%= icon "list", class: "inline-block w-6 h-6 stroke-current" %>
+      </div>
+      <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow-lg border border-base-200">
+        <li><%= link_to "Pacientes", patients_path %></li>
+        <li><a class="opacity-50">Protocolos</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

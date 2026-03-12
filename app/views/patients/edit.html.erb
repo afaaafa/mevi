@@ -1,10 +1,14 @@
-<% content_for :title, "Editing patient" %>
+<% content_for :title, "Editar paciente" %>
 
-<div class="md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing patient</h1>
+<div class="max-w-2xl mx-auto">
+  <div class="mb-6">
+    <h1 class="text-2xl font-bold">Editar paciente</h1>
+    <p class="text-base-content/60 text-sm mt-1"><%= @patient.name %></p>
+  </div>
 
-  <%= render "form", patient: @patient %>
-
-  <%= link_to "Show this patient", @patient, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to patients", patients_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  <div class="card bg-base-100 shadow">
+    <div class="card-body">
+      <%= render "form", patient: @patient %>
+    </div>
+  </div>
 </div>
